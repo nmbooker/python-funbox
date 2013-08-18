@@ -27,6 +27,10 @@ I use that.  Otherwise I add the algorithm to this.
 operations.  Currently only fnot() is implemented, but `f_and` and `f_or` are
 fair game for inclusion should I need them.
 
+## funbox.mappings
+
+Functions that are specifically for working on and generating dictionaries.
+
 ## funbox.once
 
 Make a function call once if necessary, and reuse its result many times.
