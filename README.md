@@ -9,6 +9,48 @@ Note despite being functional in appearance, some of the implementations are sta
 most notably 'once' which caches an expensively-calculated value the first time it is called
 for future invocations.
 
+# Reason I Built This
+
+Because I don't want to keep writing out the same old looping and branching constructs
+over again, and having to test them each and every time.
+
+Instead, I encapsulate my problem-specific logic in a function, and
+then let a set of well-tested algorithms loose on them.
+If that algorithm is there in the standard library or a third-party library,
+I use that.  Otherwise I add the algorithm to this.
+
+# Overview of Modules
+
+## funbox.flogic
+
+`flogic` is a module of functions for composing functions that return boolean with boolean
+operations.  Currently only fnot() is implemented, but `f_and` and `f_or` are
+fair game for inclusion should I need them.
+
+## funbox.once
+
+Make a function call once if necessary, and reuse its result many times.
+
+## funbox.passthrough
+
+Pass through values unchanged under some conditions, but call a function on them
+otherwise.
+
+
+# Contributions
+
+I welcome patches to add new functions, or to fix bugs or improve performance in existing ones.
+
+If you want to enhance the interface of an existing function, please contribute
+yours under a different name.  For example you might want to curry a function
+that I've left as flat, call it `funcname_curried`.  In other words, I've got code
+using this library, and I don't want it to break.
+
+Although the functions in here are ripe for using in a functional programming
+style, it doesn't mean you have to implement them functionally.
+I do, however, ask that you provide a rigorous doctest or, if it's more complex, a unittest,
+to check it works as expected, however you implement it.
+
 
 # Copyright and License
 
