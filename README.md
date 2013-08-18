@@ -47,7 +47,7 @@ I welcome patches to add new functions, or to fix bugs or improve performance in
 
 If you want to enhance the interface of an existing function, please contribute
 yours under a different name.  For example you might want to curry a function
-that I've left as flat, call it `funcname_curried`.  In other words, I've got code
+that I've left as flat, call it `funcname_curried` or `funcname_c`.  In other words, I've got code
 using this library, and I don't want it to break.
 
 Although the functions in here are ripe for using in a functional programming
