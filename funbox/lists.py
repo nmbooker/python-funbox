@@ -5,15 +5,15 @@
 
 import validation
 
-def all_but_last(n, sequence):
-    """Return all but the last n items of the sequence.
+def all_but_last(n):
+    """all_but_last(n)(sequence) => all but the last n items of the sequence
 
-    >>> all_but_last(3, [1, 2, 3, 4, 5, 6, 7])
+    >>> all_but_last(3)([1, 2, 3, 4, 5, 6, 7])
     [1, 2, 3, 4]
     """
     if not validation.is_natural_number(n):
         raise ValueError("n must be an integer from 0 upwards, got %r" % (n,))
-    return sequence[:-n]
+    return lambda sequence : sequence[:-n]
 
 if __name__ == "__main__":
     import doctest
