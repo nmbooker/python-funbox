@@ -1,3 +1,6 @@
 *.pyc
 *~
 .*.swp
+/funbox.egg-info
+/build
+/dist
