@@ -9,6 +9,9 @@ Note despite being functional in appearance, some of the implementations are sta
 most notably 'once' which caches an expensively-calculated value the first time it is called
 for future invocations.
 
+Also, some of the modules in here could be handy in an imperative context, for example
+`validation` and `cmdline_parsing`.
+
 # Reason I Built This
 
 Because I don't want to keep writing out the same old looping and branching constructs
@@ -18,6 +21,8 @@ Instead, I encapsulate my problem-specific logic in a function, and
 then let a set of well-tested algorithms loose on them.
 If that algorithm is there in the standard library or a third-party library,
 I use that.  Otherwise I add the algorithm to this.
+
+This results in better test coverage for whatever I'm doing, and less repetition in code.
 
 # Overview of Modules
 
