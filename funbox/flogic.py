@@ -15,6 +15,19 @@ def fnot(predicate):
     """
     return lambda val: not predicate(val)
 
+def f_all(predicate, iterable):
+    """Return whether predicate(i) is True for all i in iterable
+
+    >>> is_odd = lambda num: (num % 2 == 1)
+    >>> f_all(is_odd, [])
+    True
+    >>> f_all(is_odd, [1, 3, 5, 7, 9])
+    True
+    >>> f_all(is_odd, [2, 1, 3, 5, 7, 9])
+    False
+    """
+    return all(predicate(i) for i in iterable)
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
