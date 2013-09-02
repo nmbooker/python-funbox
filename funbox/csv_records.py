@@ -17,7 +17,7 @@ def add_column(existing_rows, new_column):
     >>> list(add_column(old, gender_column))
     [['fred', 43, 'male'], ['wilma', 34, 'female']]
     """
-    for row, new_field in zip(existing_rows, new_column):
+    for row, new_field in izip(existing_rows, new_column):
         row_copy = row[:]
         row_copy.append(new_field)
         yield row_copy
