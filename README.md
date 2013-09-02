@@ -45,6 +45,30 @@ Make a function call once if necessary, and reuse its result many times.
 Pass through values unchanged under some conditions, but call a function on them
 otherwise.
 
+## `funbox.cmdline_parsing`
+
+Occasionally I want to check command line arguments without consuming them via
+a more heavyweight library like argparse or optparse; for example when I'm wrapping
+another program and so passing most of them on to it.
+These functions help with that.
+
+## funbox.validation
+
+Functions that help validating data and data types.
+
+## `funbox.csv_records`
+
+Functions for dealing with lists of records in the form of lists.  For example
+`add_column` will add a column of data to an existing table of records.
+There's also funbox.mappings that deals with records in the form of dictionaries.
+
+## funbox.iterators
+
+Functions for manipulating iterators.
+
+## funbox.lists
+
+Functions for manipulating finite, usually indexable, sequences.
 
 # Contributions
 
