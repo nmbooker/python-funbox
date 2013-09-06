@@ -172,8 +172,7 @@ def row_to_dict(fields):
     fields: A finite seqence (e.g. a list) of field names, in the order they're expected in the row.
     row: An indexable sequence of data of the same length or longer than fields.
 
-    This function is curried for easy use with map, and is written for helping
-    get records out of psycopg2 cursors.
+    This function is curried for easy use with map.
 
     >>> d = row_to_dict(['id', 'forename', 'surname', 'email'])([1, 'Fred', 'Bloggs', 'fred@example.com'])
     >>> sorted(d.keys())
