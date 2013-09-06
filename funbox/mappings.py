@@ -166,11 +166,11 @@ def filter_keys_c(func):
     """
     return partial(filter_keys, func)
 
-def row_to_dict(fields):
-    """row_to_dict(fields)(row) => Dictionary built from a row of data.
+def row_to_dict(keys):
+    """row_to_dict(keys)(row) => Dictionary built from a row of data.
 
-    fields: A finite seqence (e.g. a list) of field names, in the order they're expected in the row.
-    row: An indexable sequence of data of the same length or longer than fields.
+    keys: A finite seqence (e.g. a list) of key names, in the order they're expected in the row.
+    row: An indexable sequence of data of the same length or longer than keys.
 
     This function is curried for easy use with map.
 
@@ -184,9 +184,9 @@ def row_to_dict(fields):
     >>> (d['forename'], d['surname'])
     ('Fred', 'Bloggs')
     """
-    def row_to_dict_fields(row):
-        return dict((fld, data) for fld, data in izip(fields, row))
-    return row_to_dict_fields
+    def row_to_dict_keys(row):
+        return dict((key, value) for key, value in izip(keys, row))
+    return row_to_dict_keys
 
 def dict_to_row(keys):
     """dict_to_row(keys)(adict) => Row of data containing values of given keys from adict
