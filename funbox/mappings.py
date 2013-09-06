@@ -184,9 +184,7 @@ def row_to_dict(keys):
     >>> (d['forename'], d['surname'])
     ('Fred', 'Bloggs')
     """
-    def row_to_dict_keys(row):
-        return dict(izip(keys, row))
-    return row_to_dict_keys
+    return lambda row: dict(izip(keys, row))
 
 def dict_to_row(keys):
     """dict_to_row(keys)(adict) => Row of data containing values of given keys from adict
