@@ -185,7 +185,7 @@ def row_to_dict(keys):
     ('Fred', 'Bloggs')
     """
     def row_to_dict_keys(row):
-        return dict((key, value) for key, value in izip(keys, row))
+        return dict(izip(keys, row))
     return row_to_dict_keys
 
 def dict_to_row(keys):
