@@ -169,8 +169,8 @@ def filter_keys_c(func):
 def row_to_dict(keys):
     """row_to_dict(keys)(row) => Dictionary built from a row of data.
 
-    keys: A finite seqence (e.g. a list) of key names, in the order they're expected in the row.
-    row: An indexable sequence of data of the same length or longer than keys.
+    keys: A list of key names, in the order they're expected in the row.  Any iterable is OK as long as it is finite and can be iterated over any number of times (a generator is not a good example).
+    row: A sequence of data of the same length or longer than keys.
 
     This function is curried for easy use with map.
 
