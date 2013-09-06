@@ -19,6 +19,7 @@ Some functions are curried anyway, you'll see where that's the case in the
 docstrings e.g. to_dict(funs)(an_object).  These don't necessarily have a _c suffix.
 """
 
+from itertools import izip
 import operator as op
 from functional import partial
 from flogic import fnot
@@ -164,6 +165,29 @@ def filter_keys_c(func):
     filter_keys_c(f)(a_dict) = filter_keys(f, a_dict)
     """
     return partial(filter_keys, func)
+
+def row_to_dict(fields):
+    """row_to_dict(fields)(row) => Dictionary built from a row of data.
+
+    fields: A finite seqence (e.g. a list) of field names, in the order they're expected in the row.
+    row: An indexable sequence of data of the same length or longer than fields.
+
+    This function is curried for easy use with map, and is written for helping
+    get records out of psycopg2 cursors.
+
+    >>> d = row_to_dict(['id', 'forename', 'surname', 'email'])([1, 'Fred', 'Bloggs', 'fred@example.com'])
+    >>> sorted(d.keys())
+    ['email', 'forename', 'id', 'surname']
+    >>> d['email']
+    'fred@example.com'
+    >>> d['id']
+    1
+    >>> (d['forename'], d['surname'])
+    ('Fred', 'Bloggs')
+    """
+    def row_to_dict_fields(row):
+        return dict((fld, data) for fld, data in izip(fields, row))
+    return row_to_dict_fields
 
 if __name__ == "__main__":
     import doctest
