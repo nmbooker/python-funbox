@@ -188,6 +188,14 @@ def row_to_dict(fields):
         return dict((fld, data) for fld, data in izip(fields, row))
     return row_to_dict_fields
 
+def dict_to_row(keys):
+    """dict_to_row(keys)(adict) => Row of data containing values of given keys from adict
+
+    >>> dict_to_row(['a', 'c', 'b'])({'a': 1, 'b': 2, 'c': 3, 'd': 4})
+    [1, 3, 2]
+    """
+    return lambda adict: [adict[k] for k in keys]
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
