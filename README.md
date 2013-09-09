@@ -1,12 +1,20 @@
 # Function Toolbox for Python
 
-This is a collection of highly-generic functions I've found useful in Python.
+This is a collection of general functions I've found useful in Python.
 
 Most of the functions here are pure, and so can be used in a functional style of
 programming (though they're useful in imperative code too).
 
-You may also want to install the 'functional' and 'fn' packages from PyPI
-and to look at the standard library modules functools, itertools and maybe operator.
+You may also want to install the 'fn' package from PyPI
+and to look at the standard library modules 'functools', 'itertools' and maybe 'operator'.
+
+# Dependencies
+
+Python 2.7 (I've used parts of this library in 2.6 but haven't yet run the full test suites
+under that version.  I doubt everything will work in 2.5)
+
+The 'functional' package from PyPI:
+  sudo pip install functional
 
 # Reason I Built This
 
