@@ -1,4 +1,4 @@
-# Functional Toolbox for Python
+# Function Toolbox for Python
 
 This is a collection of highly-generic functions I've found useful in Python.
 
