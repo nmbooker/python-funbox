@@ -1,28 +1,20 @@
 # Functional Toolbox for Python
 
-This is a collection of functional-style tools I've found useful in Python.
+This is a collection of highly-generic functions I've found useful in Python.
 
-Designed to complement the functools, functional, and itertools from the standard library,
-and the 'fn' package (https://github.com/kachayev/fn.py) which is available via pip
+Most of the functions here are pure, and so can be used in a functional style of
+programming (though they're useful in imperative code too).
 
-Note despite being functional in appearance, some of the implementations are stateful,
-most notably 'once' which caches an expensively-calculated value the first time it is called
-for future invocations.
-
-Also, some of the modules in here could be handy in an imperative context, for example
-`validation` and `cmdline_parsing`.
+You may also want to install the 'functional' and 'fn' packages from PyPI
+and to look at the standard library modules functools, itertools and maybe operator.
 
 # Reason I Built This
 
-Because I don't want to keep writing out the same old looping and branching constructs
-over again, and having to test them each and every time.
+Because I don't want to repeat myself in my programs.  Instead, I put any generic functions
+I write in here, along with tests and examples of usage.
 
-Instead, I encapsulate my problem-specific logic in a function, and
-then let a set of well-tested algorithms loose on them.
-If that algorithm is there in the standard library or a third-party library,
-I use that.  Otherwise I add the algorithm to this.
-
-This results in better test coverage for whatever I'm doing, and less repetition in code.
+I also hope that others, including yourself, will contribute functions to this library
+(see the 'Contributions' section below).
 
 # Overview of Modules
 
