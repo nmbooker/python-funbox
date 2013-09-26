@@ -44,15 +44,15 @@ class Once(object):
     Here's an entirely unrealistic example for doctesting purposes:
     >>> def super_expensive_operation(foo):
     ...     # pretend there's a big database query in here
-    ...     print "Doing super expensive operation"
+    ...     print("Doing super expensive operation")
     ...     return foo.upper()
     >>> get_a = Once(super_expensive_operation, 'apple')
     >>> for item in []:
-    ...     print "%s %s" % (get_a(), item)
+    ...     print("%s %s" % (get_a(), item))
     >>> # Note nothing was printed, even from super_expensive_operation
 
     >>> for item in ['hill', 'bunch', 'basket']:
-    ...     print "%s %s" % (get_a(), item)
+    ...     print("%s %s" % (get_a(), item))
     Doing super expensive operation
     APPLE hill
     APPLE bunch
