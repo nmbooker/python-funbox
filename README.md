@@ -24,6 +24,16 @@ I write in here, along with tests and examples of usage.
 I also hope that others, including yourself, will contribute functions to this library
 (see the 'Contributions' section below).
 
+# Similar Modules
+
+## jaraco.util
+I've found one package with similar goals to this one, and it has some overlap in functionality,
+called `jaraco.util`.
+
+It can be found on PyPI: https://pypi.python.org/pypi/jaraco.util
+
+I haven't tested it yet.
+
 # Overview of Modules
 
 ## funbox.flogic
