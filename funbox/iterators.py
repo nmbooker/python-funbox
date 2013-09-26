@@ -4,6 +4,7 @@
 """
 
 import itertools
+from itertools_compat import ifilter
 from flogic import fnot
 
 def itercons(new_head, tail):
@@ -30,8 +31,8 @@ def diverge(right_function, items):
     [1, 3, 5]
     """
     left_candidates, right_candidates = itertools.tee(items)
-    left = itertools.ifilter(fnot(right_function), left_candidates)
-    right = itertools.ifilter(right_function, right_candidates)
+    left = ifilter(fnot(right_function), left_candidates)
+    right = ifilter(right_function, right_candidates)
     return left, right
 
 if __name__ == "__main__":
