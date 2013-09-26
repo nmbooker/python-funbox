@@ -18,7 +18,7 @@ None values intact:
 ['A', 'B', 'CDE', 'F', None, 'G', 'H', None]
 
 Note that passnone is curried, so you can use map instead:
->>> map(passnone(toUpper), input_strings)
+>>> list(map(passnone(toUpper), input_strings))
 ['A', 'B', 'CDE', 'F', None, 'G', 'H', None]
 
 Or you could use imap from itertools.
@@ -50,7 +50,7 @@ def apply_if(predicate, function):
     >>> contains_a = lambda astr : 'a' in astr
     >>> to_upper = lambda astr : astr.upper()
     >>> strings = ['a', 'b', 'C', 'dear', 'apple', 'rod']
-    >>> map(apply_if(contains_a, to_upper), strings)
+    >>> list(map(apply_if(contains_a, to_upper), strings))
     ['A', 'b', 'C', 'DEAR', 'APPLE', 'rod']
     """
     def pass_if_pf(val):
@@ -68,7 +68,7 @@ def pass_if(predicate, function):
     >>> contains_a = lambda astr : 'a' in astr
     >>> to_upper = lambda astr : astr.upper()
     >>> strings = ['a', 'b', 'C', 'dear', 'apple', 'rod']
-    >>> map(pass_if(contains_a, to_upper), strings)
+    >>> list(map(pass_if(contains_a, to_upper), strings))
     ['a', 'B', 'C', 'dear', 'apple', 'ROD']
     """
     return apply_if(fnot(predicate), function)
