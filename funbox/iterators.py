@@ -4,8 +4,9 @@
 """
 
 import itertools
-from itertools_compat import ifilter
+from itertools_compat import ifilter, imap
 from flogic import fnot
+import functools
 
 def itercons(new_head, tail):
     """Cons a value onto the beginning of an iterator.
@@ -34,6 +35,27 @@ def diverge(right_function, items):
     left = ifilter(fnot(right_function), left_candidates)
     right = ifilter(right_function, right_candidates)
     return left, right
+
+def imap_c(func):
+    """imap_c(func)(iterable) = itertools.imap(func, iterable)
+
+    (a -> b) -> iter[a] -> iter[b]
+
+    >>> list(imap_c(int)(['1', '2', '3']))
+    [1, 2, 3]
+    """
+    return functools.partial(imap, func)
+
+def ifilter_c(func):
+    """ifilter_c(func)(iterable) = itertools.ifilter(func, iterable)
+
+    (a -> bool) -> iter[a] -> iter[a]
+
+    >>> list(ifilter_c(lambda x: x % 2 == 0)([1, 2, 3, 4]))
+    [2, 4]
+    """
+    return functools.partial(ifilter, func)
+
 
 if __name__ == "__main__":
     import doctest
