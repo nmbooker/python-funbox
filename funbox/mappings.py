@@ -136,6 +136,20 @@ def map_values_c(fun):
     """
     return partial(map_values, fun)
 
+def coerce_values(spec):
+    """coerce_values(spec)(indict) : change some values of indict
+
+    >>> mappings = {'count': int}
+    >>> coerce_values(mappings)({'a': 'foo', 'count': '3000'})
+    {'a': 'foo', 'count': 3000}
+    """
+    def _coerce_values(indict):
+        outdict = dict(indict).copy()
+        for k, f in spec.items():
+            outdict[k] = f(indict[k])
+        return outdict
+    return _coerce_values
+
 def without_keys(keys):
     """Return a copy of a_dict with the given keys removed.
 
