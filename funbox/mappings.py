@@ -4,7 +4,7 @@
 
 This is to dictionary comprehensions in Python 3 as itertools is to generator
 expressions in Python 2 and 3.
-This works with Python 2 though, whereas dictionary comprehensions are Python 3 only.
+This works with Python 2.6, whereas dictionary comprehensions are Python 3 or Python 2.7 and above only.
 
 Notes on currying
 
