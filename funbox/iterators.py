@@ -4,8 +4,7 @@
 """
 
 import itertools
-from itertools_compat import ifilter, imap
-from flogic import fnot
+from itertools_compat import ifilter, imap, ifilterfalse
 import pairs
 import functools
 
@@ -33,8 +32,7 @@ def diverge(right_function, items):
     [1, 3, 5]
     """
     left_candidates, right_candidates = itertools.tee(items)
-    # TODO: use ifilterfalse not ifilter(fnot)
-    left = ifilter(fnot(right_function), left_candidates)
+    left = ifilterfalse(right_function, left_candidates)
     right = ifilter(right_function, right_candidates)
     return left, right
 
