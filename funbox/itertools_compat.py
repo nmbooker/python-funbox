@@ -2,7 +2,7 @@
 """itertools compatibility for Python 2 and 3, for imap, izip and ifilter.
 
 Just use:
-    from funbox.itertools_compat import imap, izip, ifilter
+    from funbox.itertools_compat import imap, izip, ifilter, ifilterfalse
 
 instead of:
     from itertools import imap, izip, ifilter, ifilterfalse
