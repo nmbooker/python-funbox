@@ -47,8 +47,27 @@ def decorate(f):
 
     >>> decorate(str)(2)
     ('2', 2)
-    >>> list(map(decorate(lambda x: 0-x), [1,2,3,4]))
+    >>> negate = lambda x: 0 - x
+    >>> list(map(decorate(negate), [1,2,3,4]))
     [(-1, 1), (-2, 2), (-3, 3), (-4, 4)]
+
+    Useful in decorate-OPERATION-undecorate types of operations.
+
+    Use 'snd' to undecorate the item.
+    Here's a contrived example using 'sort'.
+
+    >>> list(map(snd, sorted(map(decorate(negate), [1,2,4,3]))))
+    [4, 3, 2, 1]
+
+    Note you shouldn't actually do the above.  sorted() already takes
+    a key kwarg.  Do this instead:
+
+    >>> sorted([1,2,4,3], key=negate)
+    [4, 3, 2, 1]
+
+    However it's useful if the function you're using doesn't have a 'key'
+    argument.  If your function is higher-order, and doesn't handle
+    tuples, consider using lift_fst(your_function).
     """
     return lambda item: (f(item), item)
 
