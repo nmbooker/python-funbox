@@ -58,8 +58,6 @@ def sift(sieves, items):
     The order of sieves matters.  An item will go into the first group
     whose predicate it satisfies.
 
-    I might decide to change it to return only generators instead of lists.
-
     >>> import pairs
     >>> lt = lambda y: lambda x: x < y
     >>> sieves = [('< 10', lt(10)), ('10 <= x < 50', lt(50)), ('>= 50', sift_rest)]
@@ -73,9 +71,12 @@ def sift(sieves, items):
     >>> pairs.lift_snd(list)(sifted[2])
     ('>= 50', [50, 100])
     """
+    return _sift(sieves, items, partition_fun=partition)
+
+def _sift(sieves, items, partition_fun=partition):
     rest = items
     for (label, predicate) in sieves:
-        (matching, rest) = partition(predicate, rest)
+        (matching, rest) = partition_fun(predicate, rest)
         yield (label, matching)
 
 
