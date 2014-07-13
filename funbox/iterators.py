@@ -73,8 +73,7 @@ def sift(sieves, items):
     The order of sieves matters.  An item will go into the first group
     whose predicate it satisfies.
 
-    >>> import pairs
-    >>> lt = lambda y: lambda x: x < y
+    >>> from op import lt
     >>> sieves = [('< 10', lt(10)), ('10 <= x < 50', lt(50)), ('>= 50', sift_rest)]
     >>> sifted = list(sift(sieves, [1,2,9,10,11,10,9,11,49,50,49,100]))
     >>> len(sifted)
@@ -118,8 +117,7 @@ def sift_strict(sieves, items):
     If you're going to run this repeatedly over a million numbers, the improvements
     will soon stack up.
 
-    >>> import pairs
-    >>> lt = lambda y: lambda x: x < y
+    >>> from op import lt
     >>> sieves = [('< 10', lt(10)), ('10 <= x < 50', lt(50)), ('>= 50', sift_rest)]
     >>> sifted = list(sift_strict(sieves, [1,2,9,10,11,10,9,11,49,50,49,100]))
     >>> len(sifted)
