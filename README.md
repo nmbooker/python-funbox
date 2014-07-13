@@ -22,6 +22,8 @@ To run the doctests, I recommend you use 'nosetests':
 
     sudo pip install nose
 
+    nosetests --with-doctest
+
 # Reason I Built This
 
 Because I don't want to repeat myself in my programs.  Instead, I put any generic functions
