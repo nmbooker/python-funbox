@@ -4,14 +4,24 @@
 
 Useful for map, filter, takewhile, iterators.partition, iterators.sift etc
 
+This example may look slightly contrived, but if we were passing data into
+something more than a simple list comprehension it's worth having this
+kind of abstraction.
+
 >>> from datetime import date
 >>> from functional import compose
 >>> from operator import attrgetter
+>>> from iterators import partition
 >>> today = date(2014, 7, 13)
 >>> other_dates = [date(2014, 7, 12), date(2014, 7, 1)]
 >>> days_old = compose(attrgetter('days'), take_away_from(today))
->>> [dt for dt in other_dates if days_old(dt) >= 7]
+>>> # It's in the arguments of functions like partition that these
+>>> # curried operators become useful.
+>>> (older, newer) = partition(compose(ge(7), days_old), other_dates)
+>>> list(older)
 [datetime.date(2014, 7, 1)]
+>>> list(newer)
+[datetime.date(2014, 7, 12)]
 """
 
 from __future__ import division
