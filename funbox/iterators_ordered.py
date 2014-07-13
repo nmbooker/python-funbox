@@ -1,10 +1,6 @@
 #! /usr/bin/env python
 
 """Functions on iterators, optimised for case when iterators are sorted.
-
-Note sift_o is hidden as _sift_o at the moment because it is broken.
-Please don't use it.
-Once fixed, I'll remove the leading underscore again.
 """
 
 import itertools
