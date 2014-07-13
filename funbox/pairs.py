@@ -67,7 +67,7 @@ def decorate(f):
 
     However it's useful if the function you're using doesn't have a 'key'
     argument.  If your function is higher-order, and doesn't handle
-    tuples, consider using lift_fst(your_function).
+    tuples, lift_fst might help.
     """
     return lambda item: (f(item), item)
 
