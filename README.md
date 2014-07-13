@@ -14,7 +14,13 @@ Python 2.7 (I've used parts of this library in 2.6 but haven't yet run the full 
 under that version.  I doubt everything will work in 2.5)
 
 The 'functional' package from PyPI:
-  sudo pip install functional
+
+    sudo pip install functional
+
+
+To run the doctests, I recommend you use 'nosetests':
+
+    sudo pip install nose
 
 # Reason I Built This
 
