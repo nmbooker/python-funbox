@@ -10,8 +10,6 @@ Once fixed, I'll remove the leading underscore again.
 import itertools
 import iterators
 
-from iterators import sift_rest         # re-export
-
 def partition_o(left_function, items):
     """Return a pair of iterators: left and right
 
@@ -40,43 +38,6 @@ def partition_o(left_function, items):
     right = itertools.dropwhile(left_function, items)
     return left, right
 
-def _sift_o(sieves, items):
-    """Progressively sift out values into a series of chunks.
-
-    Status: WIP, BROKEN DO NOT USE
-
-    Example of sieves:
-
-    >>> lt = lambda y: lambda x: x < y
-    >>> sieves = [  ('< 10',         lt(10)),
-    ...             ('10 <= x < 50', lt(50)),
-    ...             ('>= 50',        sift_rest),
-    ...          ]
-
-    The predicates in sieves must be ordered, and the items must be ordered,
-    such that once an item is found for which a sieve's predicate is false,
-    it can't be true for any of the rest of the items.
-
-    This will help getting a list of people by age range for example,
-    by pulling out each age range in turn.
-
-    The order of sieves matters.  An item will go into the first group
-    whose predicate it satisfies.
-
-    >>> import pairs
-    >>> sifted = list(_sift_o(sieves, [1,2,9,10,11,11,49,50,100]))
-    >>> len(sifted)
-    3
-    >>> pairs.lift_snd(list)(sifted[0])
-    ('< 10', [1, 2, 9])
-    >>> pairs.lift_snd(list)(sifted[1])
-    ('10 <= x < 50', [10, 11, 11, 49])
-    >>> pairs.lift_snd(list)(sifted[2])
-    ('>= 50', [50, 100])
-
-    BUG: The last test case above returns ('>= 50', [100])
-    """
-    return iterators._sift(sieves, items, partition_fun=partition_o)
 
 if __name__ == "__main__":
     import doctest
