@@ -10,13 +10,19 @@ and to look at the standard library modules 'functools', 'itertools' and maybe '
 
 # Dependencies
 
-Python 2.7 (I've used parts of this library in 2.6 but haven't yet run the full test suites
-under that version.  I doubt everything will work in 2.5)
+Python 2.6, 2.7 or Python 3.2 and upwards.
+
+It should also work with 3.0 and 3.1, I just haven't got a copy to run the tests on
+at the moment.
+
+Note most of my development is in 2.7 now, so while I'm striving for
+Python 3 compatibility I might not be quite so careful about 2.6 and lower.
+
+I haven't run the tests in 3.0 or 3.1 yet.
 
 The 'functional' package from PyPI:
 
     sudo pip install functional
-
 
 To run the doctests, I recommend you use 'nosetests':
 
