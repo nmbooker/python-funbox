@@ -49,6 +49,21 @@ def partition(left_function, items):
     """
     return pairs.swap(diverge(left_function, items))
 
+def partition_strict(left_function, items):
+    """Like 'partition' but returns two lists instead of lazy iterators.
+
+    Should be faster than partition because it only goes through 'items' once.
+
+    >>> is_odd = lambda x : (x % 2)
+    >>> partition_strict(is_odd, [1, 2, 3, 4, 5, 6])
+    ([1, 3, 5], [2, 4, 6])
+    """
+    left = []
+    right = []
+    for item in items:
+        (left if left_function(item) else right).append(item)
+    return (left, right)
+
 def sift(sieves, items):
     """Progressively sift out values into a series of chunks.
 
@@ -73,7 +88,54 @@ def sift(sieves, items):
     """
     return _sift(sieves, items, partition_fun=partition)
 
-def _sift(sieves, items, partition_fun=partition):
+def sift_strict(sieves, items):
+    """Strict version of 'sift' - you get [(label, list)] instead of
+    [(label, iterator)].
+
+    Profiling suggests that this is slightly faster when len(sieves) == 2,
+    but the greater the number of sieves, the bigger the advantage of using
+    sift_strict over sift.
+
+    Here I sift with just two levels (low and gargantuan):
+        devbox% python profilem.py
+        Test it does what we want...
+        Partition to high and low 1 lots of 1000000 numbers...
+        0.57293009758
+        Partition strictly to high and low 1 lots of 1000000 numbers...
+        0.493767023087
+
+    And then I adjust my script to have six levels (low, med, high, huge, massive, gargantuan):
+
+        Test it does what we want...
+        Partition to high and low 1 lots of 1000000 numbers...
+        1.74753117561
+        Partition strictly to high and low 1 lots of 1000000 numbers...
+        1.38616394997
+
+    Note the much more marked difference between the two figures - add a little
+    more than 0.1 of a second for each extra sieve.
+
+    If you're going to run this repeatedly over a million numbers, the improvements
+    will soon stack up.
+
+    >>> import pairs
+    >>> lt = lambda y: lambda x: x < y
+    >>> sieves = [('< 10', lt(10)), ('10 <= x < 50', lt(50)), ('>= 50', sift_rest)]
+    >>> sifted = list(sift_strict(sieves, [1,2,9,10,11,10,9,11,49,50,49,100]))
+    >>> len(sifted)
+    3
+    >>> sifted[0]
+    ('< 10', [1, 2, 9, 9])
+    >>> sifted[1]
+    ('10 <= x < 50', [10, 11, 10, 11, 49, 49])
+    >>> sifted[2]
+    ('>= 50', [50, 100])
+    """
+    # The only implementation difference between this and
+    # sift is the partition function used.
+    return _sift(sieves, items, partition_fun=partition_strict)
+
+def _sift(sieves, items, partition_fun):
     rest = items
     for (label, predicate) in sieves:
         (matching, rest) = partition_fun(predicate, rest)
