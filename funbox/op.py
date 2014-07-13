@@ -2,7 +2,16 @@
 
 """Curried operators.
 
-Useful for map, filter, takewhile, partition etc.
+Useful for map, filter, takewhile, iterators.partition, iterators.sift etc
+
+>>> from datetime import date
+>>> from functional import compose
+>>> from operator import attrgetter
+>>> today = date(2014, 7, 13)
+>>> other_dates = [date(2014, 7, 12), date(2014, 7, 1)]
+>>> days_old = compose(attrgetter('days'), take_away_from(today))
+>>> [dt for dt in other_dates if days_old(dt) >= 7]
+[datetime.date(2014, 7, 1)]
 """
 
 from __future__ import division
