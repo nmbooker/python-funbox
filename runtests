@@ -1,9 +1,16 @@
 #! /bin/bash
 
-if [ -z "$NOSE" ] ; then
-    echo 'ERROR: NOSE environment variable not set.  Set to a nosetests executable' >&2
+if [ -z "$NOSES" ] ; then
+    echo 'ERROR: NOSES environment variable not set.  Set to a colon-separated list of nosetests executables' >&2
     exit 2
 fi
 
-"$NOSE" --with-doctest "$@"
-exit $?
+for NOSE in $(echo $NOSES | tr ":" " ") ; do
+    echo "NOSE=$NOSE" >&2
+    "$NOSE" --with-doctest "$@"
+    ERR=$?
+    if [ "$ERR" -ne 0 ] ; then
+        echo "$NOSE failed with status $ERR" >&2
+        exit $?
+    fi
+done
