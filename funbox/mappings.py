@@ -140,8 +140,11 @@ def coerce_values(spec):
     """coerce_values(spec)(indict) : change some values of indict
 
     >>> mappings = {'count': int}
-    >>> coerce_values(mappings)({'a': 'foo', 'count': '3000'})
-    {'a': 'foo', 'count': 3000}
+    >>> coerced = coerce_values(mappings)({'a': 'foo', 'count': '3000'})
+    >>> coerced['count']
+    3000
+    >>> coerced['a']
+    'foo'
     """
     def _coerce_values(indict):
         outdict = dict(indict).copy()
