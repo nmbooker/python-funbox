@@ -47,6 +47,8 @@ def decorate(f):
 
     >>> decorate(str)(2)
     ('2', 2)
+    >>> list(map(decorate(lambda x: 0-x), [1,2,3,4]))
+    [(-1, 1), (-2, 2), (-3, 3), (-4, 4)]
     """
     return lambda item: (f(item), item)
 
