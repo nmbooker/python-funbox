@@ -19,10 +19,10 @@ Some functions are curried anyway, you'll see where that's the case in the
 docstrings e.g. to_dict(funs)(an_object).  These don't necessarily have a _c suffix.
 """
 
-from itertools_compat import izip
-import operator as op
+from .itertools_compat import izip
+import operator
 from functional import partial
-from flogic import fnot
+from .flogic import fnot
 
 def to_dict(funs):
     """Convert an object to a dict using a dictionary of functions.
@@ -165,7 +165,7 @@ def without_keys(keys):
     {'c': 4}
     """
     keys = frozenset(keys)  # frozenset has efficient membership lookup
-    return filter_keys_c(fnot(partial(op.contains, keys)))
+    return filter_keys_c(fnot(partial(operator.contains, keys)))
 
 def filter_keys(func, a_dict):
     """Return a copy of adict with only entries where the func(key) is True.

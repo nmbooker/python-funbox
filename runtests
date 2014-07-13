@@ -1,11 +1,9 @@
 #! /bin/bash
 
-if [ -z "$PYTHON" ] ; then
-    echo 'ERROR: PYTHON environment variable not set.  Set to a Python executable' >&2
+if [ -z "$NOSE" ] ; then
+    echo 'ERROR: NOSE environment variable not set.  Set to a nosetests executable' >&2
     exit 2
 fi
 
-cd funbox
-for i in *.py ; do
-    "${PYTHON}" "$i" "$@"
-done
+"$NOSE" --with-doctest "$@"
+exit $?

@@ -26,7 +26,7 @@ Or you could use imap from itertools.
 For more complex usage, consider using Option from fn.monad.
 """
 
-from flogic import fnot
+from .flogic import fnot
 
 def passnone(f, default=None):
     """passnone(f)(val) returns None if val is None, else f(val).

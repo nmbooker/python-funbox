@@ -11,7 +11,7 @@ kind of abstraction.
 >>> from datetime import date
 >>> from functional import compose
 >>> from operator import attrgetter
->>> from iterators import partition
+>>> from .iterators import partition
 >>> today = date(2014, 7, 13)
 >>> other_dates = [date(2014, 7, 12), date(2014, 7, 1)]
 >>> days_old = compose(attrgetter('days'), take_away_from(today))
@@ -133,7 +133,7 @@ def divide_by(y):
     2.0
     >>> divide_by(2)(5)
     2.5
-    >>> from func import flip
+    >>> from .func import flip
     >>> flip(divide_by)(5)(2)
     2.5
     """
@@ -150,7 +150,7 @@ def intdiv_by(y):
     2
     >>> intdiv_by(2)(5)
     2
-    >>> from func import flip
+    >>> from .func import flip
     >>> flip(intdiv_by)(5)(2)
     2
     """
@@ -167,7 +167,7 @@ def divmod_by(y):
     (2, 0)
     >>> divmod_by(2)(5)
     (2, 1)
-    >>> from func import flip
+    >>> from .func import flip
     >>> flip(divmod_by)(5)(2)
     (2, 1)
     """
@@ -184,7 +184,7 @@ def modulo(y):
     0
     >>> modulo(2)(5)
     1
-    >>> from func import flip
+    >>> from .func import flip
     >>> flip(modulo)(5)(2)
     1
     """

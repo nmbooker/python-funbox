@@ -19,7 +19,7 @@ and an example of how to use it:
 
 >>> def add(x):
 ...     return lambda y: x + y
->>> map(add(1), [1, 2, 3, 4, 5])
+>>> list(map(add(1), [1, 2, 3, 4, 5]))
 [2, 3, 4, 5, 6]
 
 
@@ -32,6 +32,6 @@ in 'functools':
 >>> from functools import partial
 >>> def multiply(x, y):
 ...     return x * y
->>> map(partial(multiply, 2), [1, 2, 3, 4, 5])
+>>> list(map(partial(multiply, 2), [1, 2, 3, 4, 5]))
 [2, 4, 6, 8, 10]
 """

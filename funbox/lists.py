@@ -3,7 +3,7 @@
 """Tools for dealing with lists and other addressable sequences
 """
 
-import validation
+from . import validation
 
 def all_but_last(n):
     """all_but_last(n)(sequence) => all but the last n items of the sequence
