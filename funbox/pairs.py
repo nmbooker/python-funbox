@@ -42,6 +42,15 @@ def swap(pair):
     x, y = pair
     return y, x
 
+def decorate(f):
+    """decorate(f)(item) => (f(item), item)
+
+    >>> decorate(str)(2)
+    ('2', 2)
+    """
+    return lambda item: (f(item), item)
+
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
