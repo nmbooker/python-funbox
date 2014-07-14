@@ -4,7 +4,7 @@
 """
 
 import itertools
-from . import iterators
+from .. import iterators
 
 def partition_o(left_function, items):
     """Return a pair of iterators: left and right

@@ -4,8 +4,8 @@
 """
 
 import itertools
-from .itertools_compat import ifilter, imap, ifilterfalse
-from . import pairs
+from ..itertools_compat import ifilter, imap, ifilterfalse
+from .. import pairs
 import functools
 
 def itercons(new_head, tail):
@@ -73,7 +73,7 @@ def sift(sieves, items):
     The order of sieves matters.  An item will go into the first group
     whose predicate it satisfies.
 
-    >>> from .op import lt
+    >>> from ..op import lt
     >>> sieves = [('< 10', lt(10)), ('10 <= x < 50', lt(50)), ('>= 50', sift_rest)]
     >>> sifted = list(sift(sieves, [1,2,9,10,11,10,9,11,49,50,49,100]))
     >>> len(sifted)
@@ -117,7 +117,7 @@ def sift_strict(sieves, items):
     If you're going to run this repeatedly over a million numbers, the improvements
     will soon stack up.
 
-    >>> from .op import lt
+    >>> from ..op import lt
     >>> sieves = [('< 10', lt(10)), ('10 <= x < 50', lt(50)), ('>= 50', sift_rest)]
     >>> sifted = list(sift_strict(sieves, [1,2,9,10,11,10,9,11,49,50,49,100]))
     >>> len(sifted)
