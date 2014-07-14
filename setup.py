@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "funbox",
-    version = "0.8",
+    version = "0.9",
     packages = find_packages(),
     author = "Nick Booker",
     description = "Functional Toolbox",
