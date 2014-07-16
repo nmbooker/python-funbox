@@ -2,6 +2,8 @@
 
 """Maybe for Python.
 
+Lets you return and propagate null values through a series of operations.
+
 >>> from . import monad
 >>> inverse = lambda x: Nothing() if x == 0 else Just(1.0 / x)
 >>> Just(2.0).bind(inverse)
