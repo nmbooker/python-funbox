@@ -13,7 +13,11 @@ class Monad(object):
     """
     @classmethod
     def unit(cls, *args, **kwargs):
-        return cls(*args, **kwargs)
+        """Return the basic case with the value.
+        
+        Should be implemented via __init__ in your base subclass.
+        """
+        raise NotImplementedError()
 
     def bind(self, f):
         """Monad m a => (a -> m a) -> m a
@@ -21,18 +25,23 @@ class Monad(object):
         return lift(g)(self).join()
 
     def blind(self, other):
+        """Bind constant other monad, not a function returning a monad."""
         return self.bind(lambda: other)
 
     def fail(self, msg):
+        """Fail with given message."""
         raise MonadError(msg)
 
     def join(self):
+        """Flatten monad inside monad to just one level of monad."""
         return self.bind(lambda x: x)
 
     def fmap(self, f):
         return self.bind(lambda x: self.__class__.unit(f(x)))
 
 def liftM(f):
+    """Lift function f to take and return a monad.
+    """
     def _lifted(m):
         return m.fmap(f)
     return _lifted

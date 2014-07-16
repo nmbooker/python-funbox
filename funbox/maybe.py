@@ -20,7 +20,9 @@ Nothing()
 from . import monad
 
 class Maybe(monad.Monad):
-    pass
+    @classmethod
+    def unit(cls, x):
+        return Just(x)
 
 class Just(Maybe):
     def __init__(self, x):

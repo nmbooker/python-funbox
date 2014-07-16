@@ -19,6 +19,10 @@ class Either(monad.Monad):
     def __repr__(self):
         return '%s(%r)' % (self.__class__.__name__, self._x)
 
+    @classmethod
+    def unit(cls, x):
+        return Right(x)
+
 class Left(Either):
     @property
     def message(self):
