@@ -1,5 +1,8 @@
 
 """Provide a monad interface for Python.
+
+
+There's an example implementation in 'maybe.py'
 """
 
 class MonadError(Exception):
@@ -15,14 +18,16 @@ class Monad(object):
     def unit(cls, *args, **kwargs):
         """Return the basic case with the value.
         
-        Should be implemented via __init__ in your base subclass.
+        Override this in your base class.
         """
         raise NotImplementedError()
 
     def bind(self, f):
         """Monad m a => (a -> m a) -> m a
+
+        Override this or join in your subclass.
         """
-        return lift(g)(self).join()
+        return self.fmap(f).join()
 
     def blind(self, other):
         """Bind constant other monad, not a function returning a monad."""
@@ -33,7 +38,10 @@ class Monad(object):
         raise MonadError(msg)
 
     def join(self):
-        """Flatten monad inside monad to just one level of monad."""
+        """Flatten monad inside monad to just one level of monad.
+
+        Override this or bind in subclass.
+        """
         return self.bind(lambda x: x)
 
     def fmap(self, f):
