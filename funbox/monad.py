@@ -48,13 +48,16 @@ class Monad(object):
         return self.bind(lambda x: self.__class__.unit(f(x)))
 
 def liftM(f):
-    """Lift function f to take and return a monad.
+    """liftM(f)(m) = m.fmap(f)
+
+    Lift function f to take and return a monad.
     """
     def _lifted(m):
         return m.fmap(f)
     return _lifted
 
 def bindl(f):
+    """bindl(f)(m) = m.bind(f)"""
     def _bound(m):
         return m.bind(f)
     return _bound
