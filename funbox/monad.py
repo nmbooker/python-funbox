@@ -29,7 +29,10 @@ class Monad(object):
     def join(self):
         return self.bind(lambda x: x)
 
+    def fmap(self, f):
+        return self.bind(lambda x: self.__class__.unit(f(x)))
+
 def lift(f):
     def _lifted(m):
-        return m.bind(lambda x1: m.__class__.unit(f(x1)))
+        return m.fmap(f)
     return _lifted
