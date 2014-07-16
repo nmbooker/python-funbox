@@ -11,9 +11,9 @@ Nothing()
 >>> Nothing().bind(inverse)
 Nothing()
 >>> add_1 = lambda x : x + 1
->>> monad.lift(add_1)(Just(0))
+>>> monad.liftM(add_1)(Just(0))
 Just(1)
->>> monad.lift(add_1)(Nothing())
+>>> monad.liftM(add_1)(Nothing())
 Nothing()
 """
 

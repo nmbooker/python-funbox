@@ -32,7 +32,12 @@ class Monad(object):
     def fmap(self, f):
         return self.bind(lambda x: self.__class__.unit(f(x)))
 
-def lift(f):
+def liftM(f):
     def _lifted(m):
         return m.fmap(f)
     return _lifted
+
+def bindl(f):
+    def _bound(m):
+        return m.bind(f)
+    return _bound
