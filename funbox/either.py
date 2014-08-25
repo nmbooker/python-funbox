@@ -48,6 +48,20 @@ class Right(Either):
     def is_right(self):
         return True
 
+def lift_left(f):
+    """Lift function into Left only.
+    
+    >>> append_nl = lambda x: x + "\\n"
+    >>> lift_left(append_nl)(Left("Hello"))
+    Left('Hello\\n')
+    >>> lift_left(append_nl)(Right("Hello"))
+    Right('Hello')
+    """
+    def _left_lifted_f(either):
+        return (either if either.is_right() 
+                else either.__class__(f(either.message)))
+    return _left_lifted_f
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
