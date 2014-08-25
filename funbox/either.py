@@ -23,6 +23,9 @@ class Either(monad.Monad):
     def unit(cls, x):
         return Right(x)
 
+    def is_left(self):
+        return not self.is_right()
+
 class Left(Either):
     @property
     def message(self):
@@ -31,6 +34,9 @@ class Left(Either):
     def bind(self, f):
         return self
 
+    def is_right(self):
+        return False
+
 class Right(Either):
     @property
     def value(self):
@@ -38,6 +44,9 @@ class Right(Either):
 
     def bind(self, f):
         return f(self._x)
+
+    def is_right(self):
+        return True
 
 if __name__ == "__main__":
     import doctest
