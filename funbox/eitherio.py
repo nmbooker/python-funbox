@@ -1,7 +1,7 @@
 """IO for Python using Either.
 """
 
-def interact_either(items):
+def write_either(items):
     """Left strings are sent to stderr, Right strings to stdout.
 
     Note this is hard to doctest because of the use of IO.
