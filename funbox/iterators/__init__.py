@@ -23,8 +23,8 @@ def itercons(new_head, tail):
 def diverge(right_function, items):
     """Return a pair of iterators: (left, right)
 
-    right will contain values where right_function(val) is truthy.
-    left will contain values where right_function(val) is falsey.
+    right will yield values where right_function(val) is truthy.
+    left will yield values where right_function(val) is falsey.
 
     >>> is_odd = lambda x : (x % 2)
     >>> (evens, odds) = diverge(is_odd, [1, 2, 3, 4, 5, 6])
