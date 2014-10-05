@@ -21,10 +21,10 @@ def itercons(new_head, tail):
 
 
 def diverge(right_function, items):
-    """Return a pair of iterators: left and right
+    """Return a pair of iterators: (left, right)
 
-    Items for which right_function returns a true value go into the right iterator.
-    Items for which right_function returns a false value go into the left iterator.
+    right will contain values where right_function(val) is truthy.
+    left will contain values where right_function(val) is falsey.
 
     >>> is_odd = lambda x : (x % 2)
     >>> (evens, odds) = diverge(is_odd, [1, 2, 3, 4, 5, 6])
@@ -109,7 +109,8 @@ def sift_strict(sieves, items):
         Partition strictly to high and low 1 lots of 1000000 numbers...
         0.493767023087
 
-    And then I adjust my script to have six levels (low, med, high, huge, massive, gargantuan):
+    And then I adjust my script to have six levels (low, med, high, huge,
+    massive, gargantuan):
 
         Test it does what we want...
         Partition to high and low 1 lots of 1000000 numbers...
@@ -117,11 +118,11 @@ def sift_strict(sieves, items):
         Partition strictly to high and low 1 lots of 1000000 numbers...
         1.38616394997
 
-    Note the much more marked difference between the two figures - add a little
-    more than 0.1 of a second for each extra sieve.
+    Note the much more marked difference between the two figures - add
+    a little more than 0.1 of a second for each extra sieve.
 
-    If you're going to run this repeatedly over a million numbers, the improvements
-    will soon stack up.
+    If you're going to run this repeatedly over a million numbers, the
+    improvements will soon stack up.
 
     >>> from ..op import lt
     >>> sieves = [('< 10', lt(10)), ('10 <= x < 50', lt(50)), ('>= 50', sift_rest)]
