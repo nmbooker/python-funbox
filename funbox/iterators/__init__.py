@@ -176,6 +176,22 @@ def concat(iterables):
     """
     return itertools.chain(*iterables)
 
+def concat_map(f, xs):
+    """Map function f over an iterable xs and concatenate the results.
+
+    This is useful if you want to return a variable number of items
+    into your output list from your input list.
+
+    For example you may be building a list of arguments for a program
+    that takes the same option multiple times with a different
+    argument each time:
+
+    >>> dash_a_option = lambda x: ['-a', x]
+    >>> list(concat_map(dash_a_option, ['a', 'b', 'c']))
+    ['-a', 'a', '-a', 'b', '-a', 'c']
+    """
+    return concat(imap(f, xs))
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
