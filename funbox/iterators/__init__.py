@@ -8,6 +8,7 @@ from ..itertools_compat import ifilter, imap, ifilterfalse
 from .. import pairs
 import functools
 
+
 def itercons(new_head, tail):
     """Cons a value onto the beginning of an iterator.
 
@@ -17,6 +18,7 @@ def itercons(new_head, tail):
     [1, 2, 3, 4]
     """
     return itertools.chain([new_head], tail)
+
 
 def diverge(right_function, items):
     """Return a pair of iterators: left and right
@@ -36,6 +38,7 @@ def diverge(right_function, items):
     right = ifilter(right_function, right_candidates)
     return left, right
 
+
 def partition(left_function, items):
     """Like 'diverge' except the values passing left_function go into the
     left hand side of the tuple, and otherwise go into the right.
@@ -48,6 +51,7 @@ def partition(left_function, items):
     [1, 3, 5]
     """
     return pairs.swap(diverge(left_function, items))
+
 
 def partition_strict(left_function, items):
     """Like 'partition' but returns two lists instead of lazy iterators.
@@ -63,6 +67,7 @@ def partition_strict(left_function, items):
     for item in items:
         (left if left_function(item) else right).append(item)
     return (left, right)
+
 
 def sift(sieves, items):
     """Progressively sift out values into a series of chunks.
@@ -86,6 +91,7 @@ def sift(sieves, items):
     ('>= 50', [50, 100])
     """
     return _sift(sieves, items, partition_fun=partition)
+
 
 def sift_strict(sieves, items):
     """Strict version of 'sift' - you get [(label, list)] instead of
@@ -133,6 +139,7 @@ def sift_strict(sieves, items):
     # sift is the partition function used.
     return _sift(sieves, items, partition_fun=partition_strict)
 
+
 def _sift(sieves, items, partition_fun):
     rest = items
     for (label, predicate) in sieves:
@@ -148,6 +155,7 @@ def sift_rest(x):
     """
     return True
 
+
 def imap_c(func):
     """imap_c(func)(iterable) = itertools.imap(func, iterable)
 
@@ -157,6 +165,7 @@ def imap_c(func):
     [1, 2, 3]
     """
     return functools.partial(imap, func)
+
 
 def ifilter_c(func):
     """ifilter_c(func)(iterable) = itertools.ifilter(func, iterable)
@@ -168,6 +177,7 @@ def ifilter_c(func):
     """
     return functools.partial(ifilter, func)
 
+
 def concat(iterables):
     """Return iterables concatenated into one iterable.
 
@@ -175,6 +185,7 @@ def concat(iterables):
     [1, 2, 3, 4, 5, 6]
     """
     return itertools.chain(*iterables)
+
 
 def concat_map(f, xs):
     """Map function f over an iterable xs and concatenate the results.
@@ -191,6 +202,7 @@ def concat_map(f, xs):
     ['-a', 'a', '-a', 'b', '-a', 'c']
     """
     return concat(imap(f, xs))
+
 
 if __name__ == "__main__":
     import doctest
