@@ -168,6 +168,13 @@ def ifilter_c(func):
     """
     return functools.partial(ifilter, func)
 
+def concat(iterables):
+    """Return iterables concatenated into one iterable.
+
+    >>> list(concat([[1, 2, 3], [4, 5, 6]]))
+    [1, 2, 3, 4, 5, 6]
+    """
+    return itertools.chain(*iterables)
 
 if __name__ == "__main__":
     import doctest
