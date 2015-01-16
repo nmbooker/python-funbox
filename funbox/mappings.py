@@ -216,6 +216,12 @@ def dict_to_row(keys):
 
 def lookup(key, default=None):
     """lookup(k, default=None)(mapping) -> mapping.get(k, default)
+
+    >>> lookup('a')({'a': 1})
+    1
+    >>> lookup('a')({})
+    >>> lookup('a', 'b')({})
+    'b'
     """
     def _lookup(mapping):
         return mapping.get(key, default)
