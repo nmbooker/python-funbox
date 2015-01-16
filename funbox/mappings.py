@@ -213,6 +213,15 @@ def dict_to_row(keys):
     """
     return lambda adict: [adict[k] for k in keys]
 
+
+def lookup(key, default=None):
+    """lookup(k, default=None)(mapping) -> mapping.get(k, default)
+    """
+    def _lookup(mapping):
+        return mapping.get(key, default)
+    return _lookup
+
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
