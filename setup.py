@@ -10,4 +10,7 @@ setup(
     description = "Functional Toolbox",
     license = "MIT",
     url = "https://github.com/nmbooker/python-funbox",
+    install_requires = [
+        'functional',
+    ],
 )
