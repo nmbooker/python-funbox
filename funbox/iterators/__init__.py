@@ -208,7 +208,7 @@ def concat_map(f, xs):
 def at_least(number, iterator):
     """Return whether at least number items in iterator are truthy.
 
-    This consumes the iterator lazily, exiting as soon as the count
+    This consumes the iterator lazily, returning True as soon as the count
     hits the given number.  So in some cases it will be quicker than
     len(list(iterator)) >= number
 
@@ -235,8 +235,9 @@ def at_least(number, iterator):
 def at_most(number, iterator):
     """Return whether at most number items in iterator are truthy.
 
-    This consumes the iterator lazily, exiting as soon as the count hits
-    the given number.
+    This consumes the iterator lazily, returning False as soon
+    as the count exceeds the given number.
+
     >>> at_most(2, [False, 3, None, ''])
     True
     >>> at_most(2, [False, 3, True, 'something'])
