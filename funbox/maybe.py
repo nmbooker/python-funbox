@@ -72,23 +72,23 @@ def _gen_maybe(nulls, value, functions):
             value = fun(value)
     return value
 
-def c_maybe(*functions):
-    """c_maybe(*functions)(value) -> maybe(value, *functions)
+def maybe_c(*functions):
+    """maybe_c(*functions)(value) -> maybe(value, *functions)
 
     Curried, so suitable for use as arguments to higher-order functions.
 
     >>> from operator import methodcaller as send
     >>> from .mappings import lookup
     >>> list(map(
-    ...     c_maybe(lookup('a'), send('rstrip')),
+    ...     maybe_c(lookup('a'), send('rstrip')),
     ...     [{'a': 'abc  '}, {}, None]
     ... ))
     ['abc', None, None]
     """
     return lambda value: maybe(value, *functions)
 
-def c_odoo_maybe(*functions):
-    """c_odoo_maybe(*functions)(value) -> odoo_maybe(value, *functions)
+def odoo_maybe_c(*functions):
+    """odoo_maybe_c(*functions)(value) -> odoo_maybe(value, *functions)
 
     Curried, so suitable for use as arguments to higher-order functions.
     """
