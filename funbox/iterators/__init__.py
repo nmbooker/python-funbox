@@ -191,6 +191,11 @@ def ifilter_c(func):
 def concat(iterables):
     """Return iterables concatenated into one iterable.
 
+    This is just a shortcut to itertools.chain.from_iterable.
+
+    If you're only using this library for concat, consider
+    using the itertools version instead.
+
     >>> list(concat([[1, 2, 3], [4, 5, 6]]))
     [1, 2, 3, 4, 5, 6]
     """
@@ -265,7 +270,6 @@ def at_most(number, iterator):
         if count > number:
             return False
     return True
-
 
 
 if __name__ == "__main__":
