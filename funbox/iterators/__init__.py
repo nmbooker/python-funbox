@@ -7,6 +7,7 @@ import itertools
 from ..itertools_compat import ifilter, imap, ifilterfalse
 from .. import pairs
 import functools
+import warnings
 
 
 def itercons(new_head, tail):
@@ -33,6 +34,9 @@ def diverge(right_function, items):
     >>> list(odds)
     [1, 3, 5]
     """
+    warnings.warn(DeprecationWarning(
+        "'diverge' deprecated, consider using 'partition' instead"
+    ))
     left_candidates, right_candidates = itertools.tee(items)
     left = ifilterfalse(right_function, left_candidates)
     right = ifilter(right_function, right_candidates)
