@@ -37,10 +37,7 @@ def diverge(right_function, items):
     warnings.warn(DeprecationWarning(
         "'diverge' deprecated, consider using 'partition' instead"
     ))
-    left_candidates, right_candidates = itertools.tee(items)
-    left = ifilterfalse(right_function, left_candidates)
-    right = ifilter(right_function, right_candidates)
-    return left, right
+    return pairs.swap(partition(right_function, items))
 
 
 def partition(function, items):
