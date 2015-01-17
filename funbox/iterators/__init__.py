@@ -22,10 +22,13 @@ def itercons(new_head, tail):
 
 
 def diverge(right_function, items):
-    """Return a pair of iterators: (left, right)
+    """DEPRECATED Return a pair of iterators: (falses, trues)
 
-    right will yield values where right_function(val) is truthy.
-    left will yield values where right_function(val) is falsey.
+    This function is deprecated, consider using this instead:
+       (trues, falses) = partition(function, items)
+
+    trues will yield values where right_function(val) is truthy.
+    falses will yield values where right_function(val) is falsey.
 
     >>> is_odd = lambda x : (x % 2)
     >>> (evens, odds) = diverge(is_odd, [1, 2, 3, 4, 5, 6])
