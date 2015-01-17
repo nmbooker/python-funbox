@@ -43,9 +43,11 @@ def diverge(right_function, items):
     return left, right
 
 
-def partition(left_function, items):
-    """Like 'diverge' except the values passing left_function go into the
-    left hand side of the tuple, and otherwise go into the right.
+def partition(function, items):
+    """Return a pair of iterators: (trues, falses)
+
+    trues will yield values where function(value) is truthy.
+    falses will yield values where function(value) is falsey.
 
     >>> is_odd = lambda x : (x % 2)
     >>> (odds, evens) = partition(is_odd, [1, 2, 3, 4, 5, 6])
@@ -54,7 +56,10 @@ def partition(left_function, items):
     >>> list(odds)
     [1, 3, 5]
     """
-    return pairs.swap(diverge(left_function, items))
+    tee1, tee2 = itertools.tee(items)
+    trues = ifilter(function, tee1)
+    falses = ifilterfalse(function, tee2)
+    return (trues, falses)
 
 
 def partition_strict(left_function, items):
