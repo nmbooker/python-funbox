@@ -62,7 +62,7 @@ def partition(function, items):
     return (trues, falses)
 
 
-def partition_strict(left_function, items):
+def partition_strict(function, items):
     """Like 'partition' but returns two lists instead of lazy iterators.
 
     Should be faster than partition because it only goes through 'items' once.
@@ -74,7 +74,7 @@ def partition_strict(left_function, items):
     left = []
     right = []
     for item in items:
-        (left if left_function(item) else right).append(item)
+        (left if function(item) else right).append(item)
     return (left, right)
 
 
