@@ -194,7 +194,7 @@ def concat(iterables):
     >>> list(concat([[1, 2, 3], [4, 5, 6]]))
     [1, 2, 3, 4, 5, 6]
     """
-    return itertools.chain(*iterables)
+    return itertools.chain.from_iterable(iterables)
 
 
 def concat_map(f, xs):
