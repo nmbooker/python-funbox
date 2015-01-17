@@ -205,6 +205,59 @@ def concat_map(f, xs):
     return concat(imap(f, xs))
 
 
+def at_least(number, iterator):
+    """Return whether at least number items in iterator are truthy.
+
+    This consumes the iterator lazily, exiting as soon as the count
+    hits the given number.  So in some cases it will be quicker than
+    len(list(iterator)) >= number
+
+    >>> at_least(2, [False, 3, None, ''])
+    False
+    >>> at_least(2, [False, 3, None, 'something'])
+    True
+
+    It's really designed for use with generator expressions:
+    >>> at_least(2, (x > 10 for x in range(11)))
+    False
+    >>> at_least(2, (x > 10 for x in range(13)))
+    True
+    """
+    count = 0
+    for item in iterator:
+        if item:
+            count += 1
+        if count >= number:
+            return True
+    return False
+
+
+def at_most(number, iterator):
+    """Return whether at most number items in iterator are truthy.
+
+    This consumes the iterator lazily, exiting as soon as the count hits
+    the given number.
+    >>> at_most(2, [False, 3, None, ''])
+    True
+    >>> at_most(2, [False, 3, True, 'something'])
+    False
+
+    It's really designed for use with generator expressions:
+    >>> at_most(2, (x > 10 for x in range(13)))
+    True
+    >>> at_most(2, (x > 10 for x in range(14)))
+    False
+    """
+    count = 0
+    for item in iterator:
+        if item:
+            count += 1
+        if count > number:
+            return False
+    return True
+
+
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
