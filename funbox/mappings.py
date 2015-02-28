@@ -213,6 +213,31 @@ def dict_to_row(keys):
     """
     return lambda adict: [adict[k] for k in keys]
 
+def flat_items(adict):
+    """Generate triples with one level of nested keys and values.
+
+    >>> dic = {
+    ...     'a': { 1: 'H', 2: 'W' },
+    ...     'b': { 1: 'G', 2: 'U' },
+    ... }
+
+    >>> sorted(flat_items(dic))
+    [('a', 1, 'H'), ('a', 2, 'W'), ('b', 1, 'G'), ('b', 2, 'U')]
+    """
+    for k1, nested in iteritems(adict):
+        for k2, v2 in iteritems(nested):
+            yield (k1, k2, v2)
+
+def iteritems(adict):
+    """Return iterator over items in adict.
+
+    Compatibility wrapper for Python 2 and 3.
+    """
+    if hasattr(adict, 'iteritems'):
+        return adict.iteritems()
+    else:
+        return adict.items()
+
 
 def lookup(key, default=None):
     """lookup(k, default=None)(mapping) -> mapping.get(k, default)
