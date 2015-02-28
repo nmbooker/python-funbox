@@ -64,11 +64,6 @@ Functions that are specifically for working on and generating dictionaries.
 
 Make a function call once if necessary, and reuse its result many times.
 
-## funbox.passthrough
-
-Pass through values unchanged under some conditions, but call a function on them
-otherwise.
-
 ## `funbox.cmdline_parsing`
 
 Occasionally I want to check command line arguments without consuming them via
@@ -93,6 +88,10 @@ Functions for manipulating iterators.
 ## funbox.lists
 
 Functions for manipulating finite, usually indexable, sequences.
+
+## funbox.maybe
+
+Maybe-monad-like chaining of functions that can fail by returning None.
 
 # Contributions
 
