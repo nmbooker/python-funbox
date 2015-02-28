@@ -17,6 +17,7 @@ def flip(func):
         return _flipped_inner
     return _flipped
 
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
