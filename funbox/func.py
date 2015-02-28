@@ -6,8 +6,11 @@
 def flip(func):
     """Flip the order of arguments of a curried function.
 
-    For example, we could define lt as being equal to flip(gt):
     >>> from .op import lt, gt
+    >>> lt(3)(2) == flip(lt)(2)(3)
+    True
+    
+    For example, this shows that we could define lt as being equal to flip(gt):
     >>> lt(3)(2) == flip(gt)(3)(2)
     True
     """
