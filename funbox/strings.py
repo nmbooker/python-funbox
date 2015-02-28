@@ -3,10 +3,10 @@
 """Tools for strings.
 """
 
-import re
-from .once import Once
+import re as _re
+from . import once as _once
 
-_WORDS_RE = Once(re.compile, r'\w+')
+_WORDS_RE = _once.Once(_re.compile, r'\w+')
 
 def join(sep):
     """join(sep)(iterable) Join strings in iterable with sep.
