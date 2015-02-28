@@ -4,8 +4,9 @@
 """
 
 import re
+from .once import Once
 
-_WORDS_RE = re.compile(r'\w+')
+_WORDS_RE = Once(re.compile, r'\w+')
 
 def join(sep):
     """join(sep)(iterable) Join strings in iterable with sep.
@@ -26,7 +27,7 @@ def words(string):
     >>> words('abc def     ghi\njkl\n')
     ['abc', 'def', 'ghi', 'jkl']
     """
-    return _WORDS_RE.findall(string)
+    return _WORDS_RE().findall(string)
 
 
 if __name__ == "__main__":
