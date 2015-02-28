@@ -101,7 +101,7 @@ def take_away(y):
     """take_away(y)(x) = x - y
 
     Be careful with this because subtraction is not commutative.
-    The flipped version of this is 'take_away'
+    The flipped version of this is 'take_away_from'
 
     >>> list(map(take_away(2), [1,2,3,4,5]))
     [-1, 0, 1, 2, 3]
