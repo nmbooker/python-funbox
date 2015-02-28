@@ -83,8 +83,8 @@ def updated_with(orig_dict, *new_values):
 
     >>> updated_with({1: 2, 2: 4, 3: 2}, {1: 'two', 4: 'four'})
     {1: 'two', 2: 4, 3: 2, 4: 'four'}
-    >>> updated_with({1: 2}, {1: 'two', 2: 4, }, {4: 'four'})
-    {1: 'two', 2: 4, 4: 'four'}
+    >>> updated_with({1: 2}, {1: 'two', 2: 4}, {2: 'four'})
+    {1: 'two', 2: 'four'}
     """
     newdict = dict(orig_dict)
     for vals in new_values:
