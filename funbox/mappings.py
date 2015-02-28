@@ -75,7 +75,7 @@ def with_calculated(funs):
         return updated_with(a_dict, to_dict(funs)(a_dict))
     return with_calculated_funs
 
-def updated_with(orig_dict, new_values):
+def updated_with(orig_dict, *new_values):
     """Return a copy of orig_dict updated with new_values.
 
     New keys are added, and the values of existing keys will take the
@@ -83,9 +83,12 @@ def updated_with(orig_dict, new_values):
 
     >>> updated_with({1: 2, 2: 4, 3: 2}, {1: 'two', 4: 'four'})
     {1: 'two', 2: 4, 3: 2, 4: 'four'}
+    >>> updated_with({1: 2}, {1: 'two', 2: 4, }, {4: 'four'})
+    {1: 'two', 2: 4, 4: 'four'}
     """
     newdict = dict(orig_dict)
-    newdict.update(new_values)
+    for vals in new_values:
+        newdict.update(vals)
     return newdict
 
 def pull_key(key_fun):
