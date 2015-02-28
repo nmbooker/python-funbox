@@ -3,6 +3,10 @@
 """Tools for strings.
 """
 
+import re
+
+_WORDS_RE = re.compile(r'\w+')
+
 def join(sep):
     """join(sep)(iterable) Join strings in iterable with sep.
 
@@ -15,6 +19,14 @@ def join(sep):
     def join_sep(iterable):
         return sep.join(iterable)
     return join_sep
+
+def words(string):
+    r"""Return string split into words.
+
+    >>> words('abc def     ghi\njkl\n')
+    ['abc', 'def', 'ghi', 'jkl']
+    """
+    return _WORDS_RE.findall(string)
 
 
 if __name__ == "__main__":
