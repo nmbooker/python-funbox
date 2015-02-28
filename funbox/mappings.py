@@ -84,23 +84,26 @@ def updated_with(orig_dict, *new_values):
     You can specify more than one update dictionary.
     They are applied in order, so the values of any keys in later dictionaries
     will overwrite the earlier ones.
+    If any evaluate to falselike (i.e. are None, False or empty)
+    then they are skipped.
 
     >>> updated_with({1: 2, 2: 4, 3: 2}, {1: 'two', 4: 'four'})
     {1: 'two', 2: 4, 3: 2, 4: 'four'}
-    >>> updated_with({1: 2}, {1: 'two', 2: 4}, {2: 'four'})
+    >>> updated_with({1: 2}, None, {1: 'two', 2: 4}, None, {2: 'four'}, None)
     {1: 'two', 2: 'four'}
 
     Example patterns:
        def something(self, overrides=None):
-           return updated_with({some defaults},
-                self.one_set if self.one_set else {},
-                self.another_set if self.another_set else {},
-                overrides if overrides else {},
+           return updated_with({'some': 'defaults'},
+                self.one_dict,
+                self.another_dict,
+                overrides,
            )
     """
     newdict = dict(orig_dict)
     for vals in new_values:
-        newdict.update(vals)
+        if vals:
+            newdict.update(vals)
     return newdict
 
 def pull_key(key_fun):
