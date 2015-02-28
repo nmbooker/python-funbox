@@ -190,7 +190,23 @@ def modulo(y):
     """
     return lambda x : x % y
 
-fmt = modulo    # % is also used for string formatting.
+def fmt(obj):
+    """fmt(obj)(form) = form % obj
+
+    With this ordering, this is useful for formatting a fixed object
+    in many different ways, for example:
+
+    >>> list(map(fmt(10), ["0x%x", "%d"]))
+    ['0xa', '10']
+
+    If you want to format lots of objects according to the same spec,
+    use the flipped version:
+
+    >>> from .func import flip
+    >>> list(map(flip(fmt)("0x%x"), [0, 1, 10, 11, 15]))
+    ['0x0', '0x1', '0xa', '0xb', '0xf']
+    """
+    return lambda format_string : format_string % obj
 
 if __name__ == "__main__":
     import doctest
