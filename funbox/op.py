@@ -200,13 +200,19 @@ def fmt(obj):
     ['0xa', '10']
 
     If you want to format lots of objects according to the same spec,
-    use the flipped version:
-
-    >>> from .func import flip
-    >>> list(map(flip(fmt)("0x%x"), [0, 1, 10, 11, 15]))
-    ['0x0', '0x1', '0xa', '0xb', '0xf']
+    use format_as.
     """
     return lambda format_string : format_string % obj
+
+def format_as(format_string):
+    """format_as(form)(obj) = form % obj
+
+    Useful to format many objects with the same format string.
+
+    >>> list(map(format_as("0x%x"), [0, 1, 10, 11, 15]))
+    ['0x0', '0x1', '0xa', '0xb', '0xf']
+    """
+    return lambda obj : format_string % obj
 
 if __name__ == "__main__":
     import doctest
