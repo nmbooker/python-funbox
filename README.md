@@ -1,5 +1,7 @@
 # Function Toolbox for Python
 
+[![Build Status](https://travis-ci.org/nmbooker/python-funbox.svg?branch=master)](https://travis-ci.org/nmbooker/python-funbox)
+
 This is a collection of general functions I've found useful in Python.
 
 Most of the functions here are pure, and so can be used in a functional style of
